@@ -2,3 +2,4 @@ chromedriver.exe
 geckodriver.exe
 geckodriver.log
 info.json
+main.py
