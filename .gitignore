@@ -3,3 +3,8 @@ geckodriver.exe
 geckodriver.log
 info.json
 main.py
+auto-temp.zip
+
+env/
+__pycache__
+.vscode/

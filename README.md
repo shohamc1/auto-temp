@@ -2,7 +2,7 @@
 Tired of updating temperature? This automates it for you!
 Please only use if you are sure that you are fine.
 
-[Get the latest release here](https://github.com/shohamc1/auto-temp/releases/tag/v0.1)
+[Get the latest release here](https://github.com/shohamc1/auto-temp/releases)
 
 ### How to use
 
