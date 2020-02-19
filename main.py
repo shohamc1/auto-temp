@@ -15,9 +15,9 @@ with open('info.json') as f:
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-if brow == "firefox":
+if brow.lower() == "firefox":
     driver = webdriver.Firefox(executable_path=(dir_path + '\geckodriver.exe'))
-elif brow == "chrome":
+elif brow.lower() == "chrome":
     driver = webdriver.Chrome(executable_path=(dir_path + '\chromedriver.exe'))
 else:
     print('browser tag invalid')
