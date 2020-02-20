@@ -16,7 +16,7 @@
             "url": "https://github.com/heroku/heroku-buildpack-chromedriver"
         },
         {
-          " url": "heroku/python"
+            "url": "heroku/python"
         }
       ],
     "scripts": {
