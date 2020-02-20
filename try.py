@@ -20,6 +20,7 @@ driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), o
 uname = os.environ.get("USERNAME")
 pw = os.environ.get("PASSWD")
 
+#
 
 def auto_temp():
     print ('Running')
