@@ -8,7 +8,6 @@ from selenium.webdriver.common.by import By
 import json
 import time
 import schedule
-from pyvirtualdisplay import Display
 
 chrome_options = Options()
 chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
