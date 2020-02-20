@@ -8,6 +8,7 @@ import os
 import json
 import time
 import schedule
+from pyvirtualdisplay import Display
 
 def auto_temp():
     print ('Running')
