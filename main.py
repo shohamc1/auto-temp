@@ -25,7 +25,12 @@ def auto_temp():
     if brow.lower() == "firefox":
         driver = webdriver.Firefox(executable_path=(dir_path + '\geckodriver.exe'), options=options)
     elif brow.lower() == "chrome":
-        driver = webdriver.Chrome(executable_path=(dir_path + '\chromedriver.exe'), options=options)
+        GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+        CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+        chrome_options = webdriver.ChromeOptions()chrome_options.add_argument('--disable-gpu')
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.binary_location = GOOGLE_CHROME_PATH
+        driver = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         print('browser tag invalid')
 
