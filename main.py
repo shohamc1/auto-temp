@@ -57,7 +57,7 @@ def auto_temp():
     #exit
     #driver.quit()
 
-schedule.every().day.at("10:30").do(auto_temp)
+schedule.every().day.at("10:15").do(auto_temp)
 schedule.every().day.at("17:00").do(auto_temp)
 #schedule.every().day.at("21:45").do(auto_temp)
 
