@@ -16,6 +16,9 @@ chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--no-sandbox")
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
 
+uname = os.environ.get("USERNAME")
+pw = os.environ.get("PASSWD")
+
 
 def auto_temp():
     print ('Running')
