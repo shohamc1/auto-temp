@@ -19,7 +19,4 @@
             "url": "heroku/python"
         }
       ],
-    "scripts": {
-        "postdeploy": "python try.py"
-    }
 }

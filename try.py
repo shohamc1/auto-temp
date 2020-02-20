@@ -19,11 +19,6 @@ driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), o
 
 def auto_temp():
     print ('Running')
-    with open('info.json') as f:
-        info = json.load(f)
-        uname = info['uname']
-        pw = info['pw']
-        brow = info['browser']
 
     #login phase
     driver.get('https://tts.sutd.edu.sg')
