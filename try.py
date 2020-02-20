@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 import json
 import time
 import schedule
+from random import randrange
 
 chrome_options = Options()
 chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
@@ -46,12 +47,12 @@ def auto_temp():
     #exit
     #driver.quit()
 
-#schedule.every().day.at("10:15").do(auto_temp)
-#schedule.every().day.at("17:00").do(auto_temp)
-schedule.every(30).seconds.do(auto_temp)
+schedule.every().day.at("10:" + str(randrange(60))).do(auto_temp)
+schedule.every().day.at("17:" + str(randrange(60))).do(auto_temp)
+#schedule.every(30).seconds.do(auto_temp)
 
 if __name__ == "__main__":
     while True:
         print ("This is running")
         schedule.run_pending()
-        time.sleep(1)
+        time.sleep(10)
