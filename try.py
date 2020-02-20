@@ -47,8 +47,8 @@ def auto_temp():
     #exit
     #driver.quit()
 
-schedule.every().day.at("10:{:02d}".format(randrange(60))).do(auto_temp)
-schedule.every().day.at("17:{:02d}".format(randrange(60))).do(auto_temp)
+schedule.every().day.at("10:00").do(auto_temp)
+schedule.every().day.at("17:00").do(auto_temp)
 #schedule.every(30).seconds.do(auto_temp)
 
 if __name__ == "__main__":
