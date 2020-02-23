@@ -9,6 +9,7 @@ import json
 import time
 import schedule
 from random import randrange
+from mail import send_email
 
 chrome_options = Options()
 chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
@@ -20,10 +21,9 @@ driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), o
 uname = os.environ.get("USERNAME")
 pw = os.environ.get("PASSWD")
 
-#
 
 def auto_temp():
-    print ('Running')
+    print ('Sending temperature')
 
     #login phase
     driver.get('https://tts.sutd.edu.sg')
@@ -45,15 +45,17 @@ def auto_temp():
     sel.select_by_visible_text('Less than or equal to 37.6°C')
     driver.find_element_by_name('ctl00$pgContent1$btnSave').click()
 
+    #send email
+    send_email()
+    
     #exit
-    #driver.quit()
+    driver.quit()
 
 schedule.every().day.at("10:00").do(auto_temp)
 schedule.every().day.at("17:00").do(auto_temp)
-#schedule.every(30).seconds.do(auto_temp)
 
 if __name__ == "__main__":
     while True:
-        print ("This is running")
+        print('Running')
         schedule.run_pending()
         time.sleep(10)
