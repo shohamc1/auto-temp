@@ -58,4 +58,4 @@ if __name__ == "__main__":
     while True:
         print('Running')
         schedule.run_pending()
-        time.sleep(10)
+        time.sleep(60)

@@ -4,9 +4,9 @@ import smtplib
 def send_email():
   s = smtplib.SMTP(host='smtp-mail.outlook.com', port=587)
   s.starttls()
-  s.login("barcelonafcshoham@hotmail.com", "shohamc19960")
+  s.login("auto-temp@outlook.com", "lmaoboi123")
 
-  FROM = "barcelonafcshoham@hotmail.com"
+  FROM = "auto-temp@outlook.com"
   TO = "shhmchk@gmail.com"
 
   SUBJECT = "TTS Posted"
