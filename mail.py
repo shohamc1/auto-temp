@@ -1,4 +1,5 @@
 import smtplib
+import os
 # set up the SMTP server
 
 def send_email():
@@ -7,7 +8,7 @@ def send_email():
   s.login("auto-temp@outlook.com", "lmaoboi123")
 
   FROM = "auto-temp@outlook.com"
-  TO = "shhmchk@gmail.com"
+  TO = os.environ.get("EMAIL")
 
   SUBJECT = "TTS Posted"
   TEXT = "Your temperature has been updated. Your sanity has been saved. Stay safe from COVID-19"
