@@ -19,13 +19,10 @@ def auto_temp():
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
 
-    options = Options()
-    options.add_argument('--headless')
-
     if brow.lower() == "firefox":
-        driver = webdriver.Firefox(executable_path=(dir_path + '\geckodriver.exe'), options=options)
+        driver = webdriver.Firefox(executable_path=(dir_path + '\geckodriver.exe'))
     elif brow.lower() == "chrome":
-        driver = webdriver.Chrome(executable_path=(dir_path + '\chromedriver.exe'), options=options)
+        driver = webdriver.Chrome(executable_path=(dir_path + '\chromedriver.exe'))
     else:
         print('browser tag invalid')
 
@@ -52,11 +49,45 @@ def auto_temp():
     #exit
     driver.quit()
 
-schedule.every().day.at("10:00").do(auto_temp)
-schedule.every().day.at("17:00").do(auto_temp)
-#schedule.every().minute.do(auto_temp)
+def daily_dec():
+    print('Running daily dec')
+    with open('info.json') as f:
+        info = json.load(f)
+        uname = info['uname']
+        pw = info['pw']
+        brow = info['browser']
+
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+
+    if brow.lower() == "firefox":
+        driver = webdriver.Firefox(executable_path=(dir_path + '\geckodriver.exe'))
+    elif brow.lower() == "chrome":
+        driver = webdriver.Chrome(executable_path=(dir_path + '\chromedriver.exe'))
+    else:
+        print('browser tag invalid')
+
+    #login phase
+    driver.get('https://tts.sutd.edu.sg')
+    driver.find_element_by_name('ctl00$pgContent1$uiLoginid')
+    un = driver.find_element_by_name('ctl00$pgContent1$uiLoginid')
+    un.send_keys(uname)
+    pwf = driver.find_element_by_name('ctl00$pgContent1$uiPassword')
+    pwf.send_keys(pw)
+    driver.find_element_by_name('ctl00$pgContent1$btnLogin').click()
+    driver.find_element_by_xpath('//a[text()="Daily Declaration"]').click()
+    time.sleep(0.1)
+
+    #put in details
+    driver.switch_to.window(driver.window_handles[1])
+    driver.find_element_by_name('ctl00$pgContent1$Notice').click()
+    driver.find_element_by_id('pgContent1_rbVisitOtherCountryNo').click()
+    driver.find_element_by_id('pgContent1_rbNoticeNo').click()
+    driver.find_element_by_id('pgContent1_rbContactNo').click()
+    driver.find_element_by_id('pgContent1_rbMCNo').click()
+    driver.find_element_by_id('pgContent1_btnSave').click()
+
+    driver.quit()
 
 if __name__ == "__main__":
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+    auto_temp()
+    daily_dec()
