@@ -51,8 +51,7 @@ def auto_temp():
     #exit
     driver.quit()
 
-schedule.every().day.at("11:00").do(auto_temp)
-schedule.every().day.at("17:00").do(auto_temp)
+schedule.every(12).hours.do(auto_temp)
 
 if __name__ == "__main__":
     while True:
