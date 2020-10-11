@@ -18,7 +18,7 @@ By using this script, you agree to indemnify and save all contributors harmless 
 - password
 - student_id
 3. Enter your app_name at the url [here](https://kaffeine.herokuapp.com/) to prevent it from falling asleep
-4. To ensure that it is working, ensure that you receive 2 emails a day. One between 6-10AM and the other between 4-8PM.
+4. To ensure that it is working, **ensure that you receive 2 emails a day**. One between 7-9:30AM and the other between 17-19:30PM.
 
  ### Debugging
  No known issues
