@@ -1,47 +1,28 @@
+# -*- coding: utf-8 -*-
 from selenium.webdriver.support import select
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.keys import Keys
 import os
 import json
 import time
-import schedule
-from pyvirtualdisplay import Display
+from mail import send_email
 
 def auto_temp():
-    print ('Running')
-    with open('info.json') as f:
-        info = json.load(f)
-        uname = info['uname']
-        pw = info['pw']
-        brow = info['browser']
+    uname = os.environ.get("USERNAME")
+    pw = os.environ.get("PASSWD")
 
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-
-    options = Options()
-    options.add_argument('--headless')
-
-    if brow.lower() == "firefox":
-        driver = webdriver.Firefox(executable_path=(dir_path + '\geckodriver.exe'), options=options)
-    elif brow.lower() == "chrome":
-        GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
-        CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
-
-        options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument('--disable-gpu')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.binary_location = GOOGLE_CHROME_PATH
-        try:
-            driver = webdriver.Chrome(executable_path=str(os.environ.get('CHROMEDRIVER_PATH')), chrome_options=options)
-        except:
-            driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
-        finally:
-            driver = webdriver.Chrome(executable_path=(dir_path + '\chromedriver.exe'), options=options)
-    else:
-        print('browser tag invalid')
+    CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument("--headless")
+    chrome_bin = os.environ.get("GOOGLE_CHROME_BIN", "chromedriver")
+    chrome_options.binary_location = chrome_bin
+    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
 
     #login phase
     driver.get('https://tts.sutd.edu.sg')
@@ -51,6 +32,7 @@ def auto_temp():
     pwf = driver.find_element_by_name('ctl00$pgContent1$uiPassword')
     pwf.send_keys(pw)
     driver.find_element_by_name('ctl00$pgContent1$btnLogin').click()
+    
 
     #move to directory
     driver.find_element_by_xpath('//a[text()="Temperature Taking"]').click()
@@ -64,14 +46,58 @@ def auto_temp():
     driver.find_element_by_name('ctl00$pgContent1$btnSave').click()
 
     #exit
-    #driver.quit()
+    driver.quit()
 
-#schedule.every().day.at("10:15").do(auto_temp)
-#schedule.every().day.at("17:00").do(auto_temp)
-schedule.every().minute.do(auto_temp)
+def daily_dec():
+    uname = os.environ.get("USERNAME")
+    pw = os.environ.get("PASSWD")
+
+    CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument("--headless")
+    chrome_bin = os.environ.get("GOOGLE_CHROME_BIN", "chromedriver")
+    chrome_options.binary_location = chrome_bin
+    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+
+    #login phase
+    driver.get('https://tts.sutd.edu.sg')
+    driver.find_element_by_name('ctl00$pgContent1$uiLoginid')
+    un = driver.find_element_by_name('ctl00$pgContent1$uiLoginid')
+    un.send_keys(uname)
+    pwf = driver.find_element_by_name('ctl00$pgContent1$uiPassword')
+    pwf.send_keys(pw)
+    driver.find_element_by_name('ctl00$pgContent1$btnLogin').click()
+    driver.find_element_by_xpath('//a[text()="Daily Declaration"]').click()
+    time.sleep(0.1)
+
+    #put in details
+    driver.switch_to.window(driver.window_handles[1])
+    driver.find_element_by_name('ctl00$pgContent1$Notice').click()
+    driver.find_element_by_id('pgContent1_rbVisitOtherCountryNo').click()
+    driver.find_element_by_id('pgContent1_rbNoticeNo').click()
+    driver.find_element_by_id('pgContent1_rbContactNo').click()
+    driver.find_element_by_id('pgContent1_rbMCNo').click()
+    driver.find_element_by_id('pgContent1_btnSave').click()
+
+    driver.quit() 
+
+
+def temp_and_dec():
+    try:
+        auto_temp()
+        daily_dec()
+        send_email()
+    except Exception as e:
+        print(f"Failed to declare / record temperature!, {e}")
+
+def temp_only():
+    try:
+        auto_temp()
+        send_email()
+    except Exception as e:
+        print(f"Failed to record temperature!, {e}")
 
 if __name__ == "__main__":
-    while True:
-        print ("This is running")
-        schedule.run_pending()
-        time.sleep(1)
+    temp_and_dec()
