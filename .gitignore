@@ -1,1 +1,5 @@
-__pycache__/
+auto-temp.zip
+
+env/
+__pycache__
+.vscode/
