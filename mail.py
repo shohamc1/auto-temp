@@ -22,8 +22,8 @@ def send_email():
   TO = email
 
   SUBJECT = "TTS Posted"
-  TEXT = f'''Your temperature was successfully updated on {now.strftime("%B %d, %Y")} at {now.strftime("%H:%M:%S")}. Stay safe from COVID-19! :)
-Note: Do record your temperature manually and stop the script IF YOU'RE NOT FEELING WELL
+  TEXT = f'''Your temperature was successfully updated on {now.strftime("%B %d, %Y")} at {now.strftime("%H:%M:%S")}. Stay safe from COVID-19!
+Please stop the script and do declarations and temperature taking manually if you are not feeling well.
   '''
 
   message = "Subject: {}\n\n{}".format(SUBJECT, TEXT)
@@ -32,5 +32,5 @@ Note: Do record your temperature manually and stop the script IF YOU'RE NOT FEEL
   s.sendmail(FROM, TO, message)
   s.quit()
 
-  if __name__ == "__main__":
-    send_email()
+if __name__ == "__main__":
+  send_email()
