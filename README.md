@@ -13,10 +13,10 @@ By using this script, you agree to indemnify and save all contributors harmless 
 ### How to use
 1. Click the purple 'Deploy to Heroku' button
 2. Enter in your details:
-- app_name
-- email
-- password
-- student_id
+- `app_name` - Anything you like (You will need this for step 3)
+- `email` - To receive notifications when TTS has been successfully posted
+- `password` - WIFI Password
+- `student_id` - 100XXXX format
 3. Enter your app_name at the url [here](https://kaffeine.herokuapp.com/) to prevent it from falling asleep
 4. To ensure that it is working, **ensure that you receive 2 emails a day**. One between 0700 and 0930 and the other between 1700 and 1930.
 
