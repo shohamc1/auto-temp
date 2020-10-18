@@ -84,37 +84,31 @@ def daily_dec():
 
     driver.quit() 
 
+def handle_stale(func):
+    '''Used to rerun specific function if element has gone stale'''
+    isStale = True
+    while isStale:
+        i = 1
+        try:
+            func()
+            isStale = False
+        except exceptions.StaleElementReferenceException as e:
+            print(f"Failed to declare / record temperature!, {e}")
+            print(f"Retrying... Attempt {i+=1}")
+            if i >= 10:
+                print(f"Failed to declare / record temperature!, {e}. Attempt {i}")
+                isStale = False
 
 def temp_and_dec():
+    handle_stale(auto_temp)
+    handle_stale(daily_dec)
+    send_email()
     isStale = True
-    while isStale:
-        i = 1
-        try:
-            auto_temp()
-            daily_dec()
-            send_email()
-            isStale = False
-        except exceptions.StaleElementReferenceException as e:
-            print(f"Failed to declare / record temperature!, {e}")
-            print(f"Retrying... Attempt {i+=1}")
-            if i >= 10:
-                print(f"Failed to declare / record temperature!, {e}. Attempt {i}")
-                isStale = False
 
 def temp_only():
+    handle_stale(auto_temp)
+    send_email()
     isStale = True
-    while isStale:
-        i = 1
-        try:
-            auto_temp()
-            send_email()
-            isStale = False
-        except exceptions.StaleElementReferenceException as e:
-            print(f"Failed to declare / record temperature!, {e}")
-            print(f"Retrying... Attempt {i+=1}")
-            if i >= 10:
-                print(f"Failed to declare / record temperature!, {e}. Attempt {i}")
-                isStale = False
 
 if __name__ == "__main__":
     temp_and_dec()
