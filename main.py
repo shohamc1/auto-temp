@@ -27,13 +27,14 @@ def auto_temp():
 
     #login phase
     driver.get('https://tts.sutd.edu.sg')
+    time.sleep(0.1)
     driver.find_element_by_name('ctl00$pgContent1$uiLoginid')
     un = driver.find_element_by_name('ctl00$pgContent1$uiLoginid')
     un.send_keys(uname)
     pwf = driver.find_element_by_name('ctl00$pgContent1$uiPassword')
     pwf.send_keys(pw)
     driver.find_element_by_name('ctl00$pgContent1$btnLogin').click()
-    
+    time.sleep(0.1)
 
     #move to directory
     driver.find_element_by_xpath('//a[text()="Temperature Taking"]').click()
@@ -81,6 +82,7 @@ def daily_dec():
     driver.find_element_by_id('pgContent1_rbContactNo').click()
     driver.find_element_by_id('pgContent1_rbMCNo').click()
     driver.find_element_by_id('pgContent1_btnSave').click()
+    time.sleep(0.1)
 
     driver.quit() 
 
