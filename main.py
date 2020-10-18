@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys import Keys
+from selenium.common import exceptions
 import os
 import json
 import time
@@ -85,19 +86,35 @@ def daily_dec():
 
 
 def temp_and_dec():
-    try:
-        auto_temp()
-        daily_dec()
-        send_email()
-    except Exception as e:
-        print(f"Failed to declare / record temperature!, {e}")
+    isStale = True
+    while isStale:
+        i = 1
+        try:
+            auto_temp()
+            daily_dec()
+            send_email()
+            isStale = False
+        except exceptions.StaleElementReferenceException as e:
+            print(f"Failed to declare / record temperature!, {e}")
+            print(f"Retrying... Attempt {i+=1}")
+            if i >= 10:
+                print(f"Failed to declare / record temperature!, {e}. Attempt {i}")
+                isStale = False
 
 def temp_only():
-    try:
-        auto_temp()
-        send_email()
-    except Exception as e:
-        print(f"Failed to record temperature!, {e}")
+    isStale = True
+    while isStale:
+        i = 1
+        try:
+            auto_temp()
+            send_email()
+            isStale = False
+        except exceptions.StaleElementReferenceException as e:
+            print(f"Failed to declare / record temperature!, {e}")
+            print(f"Retrying... Attempt {i+=1}")
+            if i >= 10:
+                print(f"Failed to declare / record temperature!, {e}. Attempt {i}")
+                isStale = False
 
 if __name__ == "__main__":
     temp_and_dec()
