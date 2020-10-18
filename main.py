@@ -46,6 +46,7 @@ def auto_temp():
     sel = select.Select(driver.find_element_by_id('pgContent1_uiTemperature'))
     sel.select_by_visible_text('Less than or equal to 37.6°C')
     driver.find_element_by_name('ctl00$pgContent1$btnSave').click()
+    time.sleep(0.1)
 
     #exit
     driver.quit()
