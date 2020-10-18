@@ -93,8 +93,9 @@ def handle_stale(func):
             func()
             isStale = False
         except exceptions.StaleElementReferenceException as e:
+            i+=1
             print(f"Failed to declare / record temperature!, {e}")
-            print(f"Retrying... Attempt {i+=1}")
+            print(f"Retrying... Attempt {i}")
             if i >= 10:
                 print(f"Failed to declare / record temperature!, {e}. Attempt {i}")
                 isStale = False
