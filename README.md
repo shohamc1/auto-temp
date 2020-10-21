@@ -2,6 +2,8 @@
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/shohamc1/auto-temp/tree/heroku)
 
+Thanks to [@seancze](https://www.github.com/seancze/) for fixing the scheduler!
+
 Tired of updating temperature? This automates it for you!
 And by automate, I mean you only have to **run the script once** if you're feeling well!
 If you're not, please stop the script and record your temperature manually!
