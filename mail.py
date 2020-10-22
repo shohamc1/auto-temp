@@ -31,8 +31,7 @@ Note: Do record your temperature manually and stop the script IF YOU'RE NOT FEEL
     TEXT = f'''Your temperature failed to update on {now.strftime("%B %d, %Y")} at {now.strftime("%H:%M:%S")}.
 Please record your temperature manually and report the bug to the github contributors if you know them. Thanks!'''
 
-    message = "Subject: {}\n\n{}".format(SUBJECT, TEXT)
-
+  message = "Subject: {}\n\n{}".format(SUBJECT, TEXT)
   print("Sending mail")
   s.sendmail(FROM, TO, message)
   s.quit()
