@@ -36,5 +36,5 @@ Please record your temperature manually and report the bug to the github contrib
   s.sendmail(FROM, TO, message)
   s.quit()
 
-  if __name__ == "__main__":
-    send_email()
+if __name__ == "__main__":
+  send_email()
