@@ -3,7 +3,7 @@ from datetime import datetime
 import pytz
 import json
 import os
-
+from hashlib import sha256
 
 # Ensure that time is in SG timezone
 def utc_to_time(naive, timezone="Singapore"):
@@ -16,7 +16,7 @@ def send_email(isSuccessful = True):
   now = utc_to_time(datetime.utcnow())
   s = smtplib.SMTP(host='smtp-mail.outlook.com', port=587)
   s.starttls()
-  s.login("auto-temp@outlook.com", "lmaoboi123")
+  s.login("auto-temp@outlook.com", sha256(b'hello').hexdigest())
 
   FROM = "auto-temp@outlook.com"
   TO = email
