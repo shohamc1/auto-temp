@@ -1,29 +1,29 @@
 {
-    "name": "SUTD auto-temp",
-    "description": "Automatically fills in temperature details",
-    "repository": "https://github.com/shohamc1/auto-temp",
-    "env": {
-        "CHROMEDRIVER_PATH": "/app/.chromedriver/bin/chromedriver",
-        "GOOGLE_CHROME_BIN": "/app/.apt/usr/bin/google-chrome",
-        "USERNAME": "enter_your_matric_number",
-        "PASSWD": "wifi_password",
-        "TZ": "Asia/Singapore",
-        "EMAIL": "enter_your_email"
+  "name": "SUTD auto-temp",
+  "description": "Automatically fills in temperature details",
+  "repository": "https://github.com/seancze/fully-auto-temp",
+  "env": {
+    "CHROMEDRIVER_PATH": "/app/.chromedriver/bin/chromedriver",
+    "GOOGLE_CHROME_BIN": "/app/.apt/usr/bin/google-chrome",
+    "USERNAME": "enter_your_matric_number",
+    "PASSWD": "wifi_password",
+    "TZ": "Asia/Singapore",
+    "EMAIL": "enter_your_email"
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
     },
-    "buildpacks": [
-        {
-            "url": "heroku/python"
-        },
-        {
-            "url": "https://github.com/heroku/heroku-buildpack-google-chrome"
-        },
-        {
-            "url": "https://github.com/heroku/heroku-buildpack-chromedriver"
-        }
-    ],
-    "formation": {
-        "clock": {
-            "quantity": 1
-            }
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-google-chrome"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-chromedriver"
     }
+  ],
+  "formation": {
+    "clock": {
+      "quantity": 1
+    }
+  }
 }
