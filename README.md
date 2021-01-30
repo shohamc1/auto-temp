@@ -1,6 +1,6 @@
 # auto-temp
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/shohamc1/auto-temp/tree/heroku)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/seancze/fully-auto-temp/tree/heroku)
 
 Thanks to [@seancze](https://www.github.com/seancze/) for fixing the scheduler!
 
@@ -17,10 +17,11 @@ By using this script, you agree to indemnify and save all contributors harmless 
 
 1. Click the purple 'Deploy to Heroku' button
 2. Enter in your details:
-- `app_name` - anything you like (you will need this for step 3)
-- `email` - can be your personal or SUTD email, it is to notify you when the script succeeds
-- `password` - your WiFi password
-- `student_id` - 100xxxx format
+
+- `app_name` - Anything you like (you will need this for step 3)
+- `email` - Can be your personal or SUTD email, it is to notify you when the script succeeds
+- `password` - Your WiFi password
+- `student_id` - 100XXXX format
 
 3. Enter your `app_name` [here](https://kaffeine.herokuapp.com/) and click the button to prevent it from falling asleep.
 4. To ensure that it is working, **ensure that you receive 2 emails a day**. One between 0700 and 0930 and the other between 1700 and 1930.
