@@ -1,6 +1,6 @@
 # auto-temp
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/seancze/fully-auto-temp/tree/heroku)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/shohamc1/fully-auto-temp/tree/heroku)
 
 Thanks to [@seancze](https://www.github.com/seancze/) for fixing the scheduler!
 
